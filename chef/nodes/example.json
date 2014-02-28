@@ -1,0 +1,46 @@
+{
+  "name": "Base template",
+  "apache": {
+    "contact": "voter101@gmail.com",
+    "ext_status": false,
+    "timeout": "120",
+    "keepaliverequests": "500",
+    "serversignature": "Off",
+    "prefork": {
+      "startservers": "20",
+      "minspareservers": "20",
+      "maxspareservers": "30",
+      "serverlimit": "256",
+      "maxclients": "256",
+      "maxrequestsperchild": "10000"
+    },
+    "worker": {
+      "maxrequestsperchild": "10000"
+    }
+  },
+
+  "mysql": {
+    "server_root_password": "ilovelongpasswordsbutthiswilldo",
+    "server_repl_password": "ilovelongpasswordsbutthiswilldo",
+    "server_debian_password": "ilovelongpasswordsbutthiswilldo",
+    "remove_anonymous_users": true,
+    "remove_test_database": true,
+    "tunable": {
+      "log_queries_not_using_index": false
+    }
+  },
+
+  "run_list": [
+    "recipe[apache2]",
+    "recipe[apache2::mod_php5]",
+    "recipe[apache2::mod_rewrite]",
+    "recipe[mysql]",
+    "recipe[mysql::server]",
+    "recipe[php]",
+    "recipe[php::module_apc]",
+    "recipe[php::module_curl]",
+    "recipe[php::module_gd]",
+    "recipe[php::module_mysql]",
+    "recipe[php::module_memcache]",
+  ]
+}
