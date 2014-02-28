@@ -84,3 +84,43 @@ We can also list all existing containers:
 
     lxc-ls
 
+Chef
+========
+
+First, let's install required Ruby packages:
+
+    apt-get install ruby ruby-1.9.1
+
+Allright, know we need 2 gems:
+
+    gem install knife-solo
+    gem install librarian-chef
+
+With all that, let's set-up kitchen for a Chef. Go to directory, where you want to store it and
+issue this command (you can change chef for whatever you can):
+    
+    knife solo init chef
+
+Now, create file named **Cheffile** in freshly created kitchen and add to it this line:
+
+    site 'http://community.opscode.com/api/v1'
+
+Next, pick cookbooks you would like to use from [official Chef repository]: 
+http://community.opscode.com/cookbooks and add them to **Cheffile**. Check [example Cheffile]: 
+https://github.com/voter101/Lxc-and-chef/blob/master/chef/Cheffile in this repository to see how to 
+achieve that.
+
+With Cheffile, we're ready to setup a node (Chef instance)! Yay! Just put file named with pattern
+<container_address>.json (e.g. example.json). 
+
+**ProTip!** Make it possible to log-in to LXC container's root via SSH key. Chef won't ask for root
+password.
+
+To deploy node, use this command:
+
+   knife solo bootstrap <container_address>
+
+Ok, that should do the stuff. ;)
+
+//@TODO Solving frequent problems
+//@TODO Add references
