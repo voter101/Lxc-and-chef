@@ -41,7 +41,10 @@ Setting up a libvirt virtual bridge
 We need some way to connect all devices together and let them access the Internet. To do so, we'll
 create a network bridge using libvirt.
 
-By default all containers will use DHCP to automaticaly set-up network interfaces.
+By default all containers will use DHCP to automaticaly set-up network interfaces. It's quite pain
+in the ass, while working with Chef, but it is your choice if you want to have static IP addressing.
+
+//@TODO Turning-off dnsmasq
 
 
 Setting up an example LXC container
@@ -56,3 +59,28 @@ network device on container. If you don't do that, you may lost network connecti
 machine
 
 To do that, open-up config file (e.g. /var/lib/lxc/example/config ) and append these lines:
+
+    lxc.network.type = veth                
+    lxc.network.flags = up                 
+    lxc.network.link = virbr0              
+    lxc.network.ipv4 = 192.168.122.10/24   
+
+Controlling the container
+----------
+
+To start container, issue the command. 'd' flag makes it run in background.
+    
+    lxc-start -n example -d
+
+To stop container we should use:
+
+    lxc-halt -n example
+
+To stop container in less subtle way, we use:
+
+    lxc-stop -n example
+
+We can also list all existing containers:
+
+    lxc-ls
+
