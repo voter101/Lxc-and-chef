@@ -1,4 +1,4 @@
-Setting-up LinuX Containers and deploying virtual machines with Chef
+Setting-up LinuX Containers and deploying with Chef
 ==========
 
 In this short article, I'll show you, how to set-up LinuX Containers on your server and deploy 
