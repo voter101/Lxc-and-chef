@@ -1,0 +1,17 @@
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'apache2'
+cookbook 'mysql'
+cookbook 'php'
+
+# Additional
+cookbook 'nginx'
+cookbook 'memcached'
+cookbook 'node' # Node.js
+cookbook 'postgresql'
+cookbook 'varnish'
+cookbook 'meteor'
+cookbook 'redisio'
+cookbook 'couchdb'
+cookbook 'hipsnip-mongodb'
+cookbook 'python'
